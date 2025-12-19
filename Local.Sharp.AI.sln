@@ -1,0 +1,98 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4D14F096-736F-494C-9AC7-8FB52C85252D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "items", "items", "{28E476CA-4B05-4F1C-B16D-8CE1B3846B03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalSharpAi.Core.Application", "src\LocalSharpAi.Core.Application\LocalSharpAi.Core.Application.csproj", "{E189598E-43AE-F294-431F-7DB668347C46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalSharpAi.Core.Domain", "src\LocalSharpAi.Core.Domain\LocalSharpAi.Core.Domain.csproj", "{FE29EEFE-9E02-98E5-1821-3893F0B353F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalSharpAi.Infrastructure.Ai", "src\LocalSharpAi.Infrastructure.Ai\LocalSharpAi.Infrastructure.Ai.csproj", "{A716927C-14E8-ED90-9FAE-F629FDF8B201}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalSharpAi.Infrastructure.Persistence", "src\LocalSharpAi.Infrastructure.Persistence\LocalSharpAi.Infrastructure.Persistence.csproj", "{64738640-BF4A-5EC3-D5B0-AE9B9ACAE43D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalSharpAi.Core.UnitTests", "tests\LocalSharpAi.Core.UnitTests\LocalSharpAi.Core.UnitTests.csproj", "{DFEC67B0-E825-FD6F-69FF-0D7FCE395A85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{5FC29D2C-A3BF-448E-B8B9-756C6A9256D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{E123693D-DAAD-4AB6-8915-067A9C2845DF}"
+	ProjectSection(SolutionItems) = preProject
+		.github\Workflows\Pr-Verify.yml = .github\Workflows\Pr-Verify.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Copilot", "Copilot", "{6528D7C3-FB66-4EE4-8E79-667C202C72CA}"
+	ProjectSection(SolutionItems) = preProject
+		.github\github-copilot-instructions.md = .github\github-copilot-instructions.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalSharpAi.Api", "src\LocalSharpAi.Api\LocalSharpAi.Api.csproj", "{96DC2876-1A60-4312-AF35-AE21ABF0D4B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalSharpAi.FunctionalTests", "tests\LocalSharpAi.FunctionalTests\LocalSharpAi.FunctionalTests.csproj", "{AFA19B03-F7D3-4E88-816D-D61960170996}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalSharpAi.IntegrationTests", "tests\LocalSharpAi.IntegrationTests\LocalSharpAi.IntegrationTests.csproj", "{3CBCF93D-D20F-4441-B785-16EC291F59BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E189598E-43AE-F294-431F-7DB668347C46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E189598E-43AE-F294-431F-7DB668347C46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E189598E-43AE-F294-431F-7DB668347C46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E189598E-43AE-F294-431F-7DB668347C46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE29EEFE-9E02-98E5-1821-3893F0B353F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE29EEFE-9E02-98E5-1821-3893F0B353F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE29EEFE-9E02-98E5-1821-3893F0B353F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE29EEFE-9E02-98E5-1821-3893F0B353F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A716927C-14E8-ED90-9FAE-F629FDF8B201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A716927C-14E8-ED90-9FAE-F629FDF8B201}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A716927C-14E8-ED90-9FAE-F629FDF8B201}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A716927C-14E8-ED90-9FAE-F629FDF8B201}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64738640-BF4A-5EC3-D5B0-AE9B9ACAE43D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64738640-BF4A-5EC3-D5B0-AE9B9ACAE43D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64738640-BF4A-5EC3-D5B0-AE9B9ACAE43D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64738640-BF4A-5EC3-D5B0-AE9B9ACAE43D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFEC67B0-E825-FD6F-69FF-0D7FCE395A85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFEC67B0-E825-FD6F-69FF-0D7FCE395A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFEC67B0-E825-FD6F-69FF-0D7FCE395A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFEC67B0-E825-FD6F-69FF-0D7FCE395A85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96DC2876-1A60-4312-AF35-AE21ABF0D4B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96DC2876-1A60-4312-AF35-AE21ABF0D4B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96DC2876-1A60-4312-AF35-AE21ABF0D4B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96DC2876-1A60-4312-AF35-AE21ABF0D4B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFA19B03-F7D3-4E88-816D-D61960170996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFA19B03-F7D3-4E88-816D-D61960170996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFA19B03-F7D3-4E88-816D-D61960170996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFA19B03-F7D3-4E88-816D-D61960170996}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CBCF93D-D20F-4441-B785-16EC291F59BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CBCF93D-D20F-4441-B785-16EC291F59BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CBCF93D-D20F-4441-B785-16EC291F59BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CBCF93D-D20F-4441-B785-16EC291F59BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E189598E-43AE-F294-431F-7DB668347C46} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{FE29EEFE-9E02-98E5-1821-3893F0B353F6} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{A716927C-14E8-ED90-9FAE-F629FDF8B201} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{64738640-BF4A-5EC3-D5B0-AE9B9ACAE43D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{DFEC67B0-E825-FD6F-69FF-0D7FCE395A85} = {4D14F096-736F-494C-9AC7-8FB52C85252D}
+		{5FC29D2C-A3BF-448E-B8B9-756C6A9256D7} = {28E476CA-4B05-4F1C-B16D-8CE1B3846B03}
+		{E123693D-DAAD-4AB6-8915-067A9C2845DF} = {5FC29D2C-A3BF-448E-B8B9-756C6A9256D7}
+		{6528D7C3-FB66-4EE4-8E79-667C202C72CA} = {5FC29D2C-A3BF-448E-B8B9-756C6A9256D7}
+		{96DC2876-1A60-4312-AF35-AE21ABF0D4B4} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{AFA19B03-F7D3-4E88-816D-D61960170996} = {4D14F096-736F-494C-9AC7-8FB52C85252D}
+		{3CBCF93D-D20F-4441-B785-16EC291F59BD} = {4D14F096-736F-494C-9AC7-8FB52C85252D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F19DAE2-7D52-47F3-8CE3-8E07CEC1BEEF}
+	EndGlobalSection
+EndGlobal
