@@ -323,6 +323,7 @@ dotnet test LocalSharpAI.sln
 - Use extension methods to keep Program.cs clean
 - Each csproj has its own DI registration extension method for clarity
 - Keep documentation up to date with any project and code changes
+- Use DotEnvConfiguration for API keys and AI API keys such as OpenAI keys
 - **Localization**: Ensure support for multi-language requirements in the UI
 
 ## Testing Guidelines
