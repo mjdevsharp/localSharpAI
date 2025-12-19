@@ -1,6 +1,6 @@
 # This workflow will build a .NET Core app using .NET 10 Ubuntu.
 #
-name: Build and deploy ASP.Net Core app to an Azure Web App
+name: Build .NET Solution (ASP.Net Core)
 
 env:
   DOTNET_VERSION: "10.0"                            # Set this to the .NET Core version you want to use
