@@ -27,6 +27,6 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Format code with dotnet format
-        run:
+        run: |
           dotnet tool install -g dotnet-format
           dotnet format --check
