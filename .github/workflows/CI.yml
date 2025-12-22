@@ -6,12 +6,12 @@ env:
   DOTNET_VERSION: "10.0"                            # Set this to the .NET Core version you want to use
 
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
 
 jobs:
   build:
-    name: PR Verify (Build .NET Core Solution)
+    name: CI (.NET 10)
     runs-on: ubuntu-latest
 
     steps:
@@ -25,5 +25,8 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
-      - name: Format code with dotnet format
-        run: dotnet format --verify-no-changes
+      - name: Test with dotnet
+        run: dotnet test --configuration Release
+      
+      - name: Publish with dotnet
+        run: dotnet publish ./Local.Sharp.AI.sln --configuration Release --output artifacts
