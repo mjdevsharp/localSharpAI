@@ -24,11 +24,11 @@ public class DotEnvConfigurationProvider : ConfigurationProvider
         }
 
         var lines = File.ReadAllLines(_filePath);
-        
+
         foreach (var line in lines)
         {
             var trimmedLine = line.Trim();
-            
+
             // Skip empty lines and comments
             if (string.IsNullOrWhiteSpace(trimmedLine) || trimmedLine.StartsWith('#'))
             {
@@ -46,8 +46,8 @@ public class DotEnvConfigurationProvider : ConfigurationProvider
             var value = trimmedLine[(separatorIndex + 1)..].Trim();
 
             // Remove surrounding quotes if present
-            if (value.Length >= 2 && 
-                ((value.StartsWith('"') && value.EndsWith('"')) || 
+            if (value.Length >= 2 &&
+                ((value.StartsWith('"') && value.EndsWith('"')) ||
                  (value.StartsWith('\'') && value.EndsWith('\''))))
             {
                 value = value[1..^1];

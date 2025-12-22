@@ -29,4 +29,4 @@ jobs:
       - name: Format code with dotnet format
         run: |
           dotnet tool install -g dotnet-format
-          dotnet format --check
+          dotnet format --verify-no-changes
