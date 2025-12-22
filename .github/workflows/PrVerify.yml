@@ -6,9 +6,8 @@ env:
   DOTNET_VERSION: "10.0"                            # Set this to the .NET Core version you want to use
 
 on:
-  push:
-    pull_request:
-      branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
