@@ -14,7 +14,7 @@ public static class DotEnvConfigurationExtensions
     /// <param name="filePath">Path to the .env file (default: ".env" in project root).</param>
     /// <returns>The configuration builder for chaining.</returns>
     public static IConfigurationBuilder AddDotEnvFile(
-        this IConfigurationBuilder builder, 
+        this IConfigurationBuilder builder,
         string filePath = ".env")
     {
         return builder.Add(new DotEnvConfigurationSource { FilePath = filePath });

@@ -25,3 +25,6 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
+
+      - name: Format code with dotnet format
+        run: dotnet format --verify-no-changes
