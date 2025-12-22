@@ -1,0 +1,32 @@
+# This workflow will build a .NET Core app using .NET 10 Ubuntu.
+#
+name: Build .NET Solution (ASP.Net Core)
+
+env:
+  DOTNET_VERSION: "10.0"                            # Set this to the .NET Core version you want to use
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: CI (.NET 10)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+
+      - name: Test with dotnet
+        run: dotnet test --configuration Release
+      
+      - name: Publish with dotnet
+        run: dotnet publish ./Local.Sharp.AI.sln --configuration Release --output artifacts
