@@ -30,3 +30,9 @@ jobs:
       
       - name: Publish with dotnet
         run: dotnet publish ./Local.Sharp.AI.sln --configuration Release --output artifacts
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: local_sharp_ai_artifacts
+          path: artifacts/ # or path/to/artifact
