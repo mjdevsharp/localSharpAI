@@ -10,6 +10,10 @@ on:
   push:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   build:
     name: CI (.NET 10)
