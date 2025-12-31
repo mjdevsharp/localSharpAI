@@ -1,0 +1,45 @@
+name: "Step - Deploy Azure Web App .NET 10"
+
+on:
+  workflow_call:
+    inputs:
+      env:
+        required: true
+        type: string
+    secrets:
+      AZURE_CLIENT_ID:
+        required: true
+      AZURE_TENANT_ID:
+        required: true
+      AZURE_SUBSCRIPTION_ID:
+        required: true
+
+jobs:
+  deploy:
+    name: deploy-${{ inputs.env }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
+
+    env:
+      AZURE_WEBAPP_NAME: "local-sharp-ai-azure-webapp-${{ inputs.env }}"
+      AZURE_WEBAPP_PACKAGE_PATH: 'artifacts/'
+
+    steps:
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Download published artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: "local_sharp_ai_artifacts"
+          path: artifacts/
+
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
