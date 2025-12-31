@@ -32,7 +32,9 @@ var api = app.MapGroup("/api");
 app.UseHttpsRedirection();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+
+// Temporary enable swagger for all deployments
+//if (app.Environment.IsDevelopment())
 {
     var provider = app.Services.GetRequiredService<Asp.Versioning.ApiExplorer.IApiVersionDescriptionProvider>();
     app.UseSwagger();
