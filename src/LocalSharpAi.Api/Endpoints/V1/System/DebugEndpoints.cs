@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 namespace LocalSharpAi.Api.Endpoints.V1.System;
