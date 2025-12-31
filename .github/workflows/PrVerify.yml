@@ -22,8 +22,11 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
-
+      - name: Restore with dotnet
+        run: dotnet restore ./Local.Sharp.AI.sln
+        
       - name: Format code with dotnet format
         run: dotnet format --verify-no-changes
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
