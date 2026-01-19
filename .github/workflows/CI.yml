@@ -50,4 +50,6 @@ jobs:
     uses: ./.github/workflows/step-deploy.yml
     with:
       env: Dev
+      resource_group: ${{ secrets.AZURE_RESOURCE_GROUP }}
+      slot-name: Development
     secrets: inherit
