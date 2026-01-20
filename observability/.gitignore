@@ -1,0 +1,19 @@
+# Docker volumes
+prometheus_data/
+loki_data/
+grafana_data/
+
+# Environment files
+.env
+.env.local
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
