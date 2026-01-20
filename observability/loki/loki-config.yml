@@ -1,0 +1,43 @@
+auth_enabled: false
+
+ingester:
+  chunk_idle_period: 3m
+  lifecycler:
+    ring:
+      kvstore:
+        store: inmemory
+      replication_factor: 1
+  wal:
+    enabled: true
+    dir: /loki/wal
+
+limits_config:
+  retention_period: 168h
+  max_streams_per_user: 10000
+
+schema_config:
+  configs:
+    - from: 2024-01-01
+      store: tsdb
+      object_store: filesystem
+      schema: v13
+      index:
+        prefix: index_
+        period: 24h
+
+server:
+  http_listen_port: 3100
+  log_level: info
+
+storage_config:
+  filesystem:
+    directory: /loki/chunks
+  tsdb_shipper:
+    active_index_directory: /loki/tsdb-shipper-active
+    cache_location: /loki/tsdb-cache
+
+compactor:
+  working_directory: /loki/compactor
+
+tracing:
+  enabled: true
