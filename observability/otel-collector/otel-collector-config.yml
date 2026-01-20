@@ -1,0 +1,107 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+  
+  prometheus:
+    config:
+      scrape_configs:
+        - job_name: 'otel-collector'
+          scrape_interval: 10s
+          static_configs:
+            - targets: ['localhost:8888']
+        - job_name: 'localsharpai-api'
+          scrape_interval: 15s
+          metrics_path: '/metrics'
+          static_configs:
+            - targets: ['host.docker.internal:5000']
+
+  jaeger:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:14250
+      thrift_http:
+        endpoint: 0.0.0.0:14268
+
+processors:
+  batch:
+    send_batch_size: 1024
+    timeout: 5s
+    
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 512
+    spike_limit_mib: 128
+
+  resource:
+    attributes:
+      - key: service.namespace
+        value: localsharpai
+        action: insert
+      - key: environment
+        value: development
+        action: insert
+
+  attributes:
+    actions:
+      - key: http.client_ip
+        action: delete
+      - key: user.id
+        action: delete
+
+  spanmetrics:
+    dimensions:
+      - { name: http.method }
+      - { name: http.status_code }
+      - { name: rpc.grpc.status_code }
+
+  tail_sampling:
+    policies:
+      - name: error-traces
+        type: status_code
+        status_code:
+          status_codes: [ERROR]
+      - name: slow-traces
+        type: latency
+        latency:
+          threshold_ms: 1000
+
+exporters:
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+    namespace: localsharpai
+    const_labels:
+      service: api
+
+  logging:
+    loglevel: debug
+
+  otlphttp/loki:
+    endpoint: http://loki:3100/otlp
+
+extensions:
+  health_check:
+    endpoint: :13133
+  pprof:
+    endpoint: :1777
+
+service:
+  extensions: [health_check, pprof]
+  pipelines:
+    traces:
+      receivers: [otlp, jaeger]
+      processors: [memory_limiter, batch, resource, attributes, tail_sampling]
+      exporters: [logging]
+    
+    metrics:
+      receivers: [otlp, prometheus]
+      processors: [memory_limiter, batch, resource, attributes]
+      exporters: [prometheus, logging]
+    
+    logs:
+      receivers: [otlp]
+      processors: [memory_limiter, batch, resource, attributes]
+      exporters: [otlphttp/loki, logging]

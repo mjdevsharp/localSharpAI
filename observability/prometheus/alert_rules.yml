@@ -1,0 +1,135 @@
+groups:
+  - name: localsharpai_alerts
+    interval: 30s
+    rules:
+      # API Health Alerts
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: critical
+          component: api
+        annotations:
+          summary: "High error rate detected"
+          description: "API has error rate > 5% for the last 5 minutes"
+
+      - alert: HighLatency
+        expr: histogram_quantile(0.99, http_request_duration_seconds_bucket) > 1
+        for: 10m
+        labels:
+          severity: warning
+          component: api
+        annotations:
+          summary: "High API latency detected"
+          description: "p99 API latency > 1 second"
+
+      - alert: ServiceDown
+        expr: up{job="localsharpai-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: api
+        annotations:
+          summary: "Service is down"
+          description: "LocalSharpAi API is not responding"
+
+      # Resource Alerts
+      - alert: HighMemoryUsage
+        expr: process_resident_memory_bytes > 536870912
+        for: 10m
+        labels:
+          severity: warning
+          component: system
+        annotations:
+          summary: "High memory usage"
+          description: "Process memory usage > 512MB"
+
+      - alert: HighGCRate
+        expr: rate(dotnet_gc_collections_total[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          component: system
+        annotations:
+          summary: "High garbage collection rate"
+          description: "GC collections rate > 0.1 per second"
+
+      # Agent Alerts
+      - alert: HighAgentFailureRate
+        expr: rate(agent_execution_total{status="failed"}[5m]) > 0.1
+        for: 10m
+        labels:
+          severity: warning
+          component: agent
+        annotations:
+          summary: "High agent failure rate"
+          description: "Agent failure rate > 10%"
+
+      - alert: SlowAgentExecution
+        expr: histogram_quantile(0.95, agent_execution_duration_seconds_bucket) > 30
+        for: 10m
+        labels:
+          severity: warning
+          component: agent
+        annotations:
+          summary: "Slow agent execution detected"
+          description: "p95 agent execution time > 30 seconds"
+
+      # Model Runtime Alerts
+      - alert: ModelLoadTimeout
+        expr: increase(model_load_errors_total[5m]) > 0
+        for: 5m
+        labels:
+          severity: critical
+          component: model-runtime
+        annotations:
+          summary: "Model loading failures detected"
+          description: "Model load errors in the last 5 minutes"
+
+      - alert: SlowInference
+        expr: histogram_quantile(0.99, inference_duration_seconds_bucket) > 5
+        for: 10m
+        labels:
+          severity: warning
+          component: model-runtime
+        annotations:
+          summary: "Slow model inference"
+          description: "p99 inference latency > 5 seconds"
+
+  - name: prometheus_alerts
+    interval: 30s
+    rules:
+      - alert: PrometheusDown
+        expr: up{job="prometheus"} == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Prometheus is down"
+
+      - alert: PrometheusHighMemory
+        expr: prometheus_local_storage_memory_chunks > 1000000
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Prometheus memory usage is high"
+
+  - name: loki_alerts
+    interval: 30s
+    rules:
+      - alert: LokiDown
+        expr: up{job="loki"} == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Loki is down"
+
+      - alert: LokiHighErrorRate
+        expr: rate(loki_request_duration_seconds_bucket{status=~"5.."}[5m]) > 0.01
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Loki error rate is high"
