@@ -1,0 +1,40 @@
+name: "Step Build .NET Solution"
+
+on:
+  workflow_call:
+    inputs:
+      DOTNET_VERSION:
+        required: true
+        type: string
+      Solution_Path:
+        required: false
+        type: string
+        default: "./Local.Sharp.AI.sln"
+
+jobs:
+    build:
+        name: Build .NET Solution
+        runs-on: ubuntu-latest
+    
+        env:
+           DOTNET_VERSION: ${{ inputs.DOTNET_VERSION }}
+    
+        steps:
+        - uses: actions/checkout@v4
+
+        - name: Set up .NET Core
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: ${{ env.DOTNET_VERSION }}
+    
+        - name: Restore with dotnet
+          run: dotnet restore ${{ inputs.Solution_Path }}
+
+        - name: Format code with dotnet format
+          run: dotnet format --verify-no-changes
+
+        - name: Build with dotnet
+          run: dotnet build --configuration Release
+    
+        - name: Test with dotnet
+          run: dotnet test --configuration Release
